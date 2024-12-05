@@ -1,0 +1,3 @@
+tải mô hình VietOCR bằng link này sau đó để vào trong thư mục models/vietocr
+
+https://vocr.vn/data/vietocr/vgg_transformer.pth

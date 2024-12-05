@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trích xuất thông tin CCCD</title>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <div class="row">
+        <center> 
+            <div class="col-md-12">
+                <button id="btn_extract" class="btn btn-primary btn-success" style="font-size: 2em;">
+                    <i class="fas fa-barcode-read"></i> Trích xuất thông tin
+                </button>
+            </div>
+        </center>    
+    </div>
+    
+    <div class="row">
+        <center> 
+            <div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px;">
+                <h3 id="lbl_status" style="color: green;">Ready</h3>
+            </div>        
+        </center>   
+    </div>
+    
+    <div class="row">    
+        <div class="col-md-6" style="height: auto;">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span id="lbl_total">Ảnh căn cước công dân</span>
+                </div>
+                <div class="container-fuid panel-body form-inline">
+                    <div class="row">
+                        <center>        
+                            <div class="col-md-12">        
+                                <button id="btn_startWebcam" class="btn btn-primary btn-default">
+                                    <span class="fa fa-camera"></span> Mở webcam
+                                </button>
+                                <button id="btn_takePicture" class="btn btn-primary btn-default" style="display: none;">
+                                    <span class="fa fa-camera"></span> Chụp ảnh
+                                </button>
+                                <button id="btn_selectImage" class="btn btn-primary btn-default">
+                                    <span class="fa fa-upload"></span> Chọn ảnh
+                                </button>
+                            </div>
+                        
+                            <div class="col-md-12">
+                                <input id="uploadImage" type="file" class="inputFile" style="display: none;" />
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div id="imagePreview" class="image-preview" style="display: none;">
+                                    <img id="img_item" style="max-width: 100%;" crossorigin="anonymous" src="" alt="Preview">
+                                </div>
+                            </div>                            
+                        
+                            <div class="col-md-12">
+                                <canvas id="canvasWebcam" style="max-width: 100%; display: block;"></canvas>
+                                <video id="video" style="max-width: 100%; display: none;">Your browser does not support the video tag.</video>
+                            </div>
+                        </center>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6" style="height: auto;">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span id="lbl_total">Kết quả</span>
+                </div>
+                <div class="container-fuid panel-body">
+                    <div class="row form-group">
+                        <span class="col-md-3">Số CCCD</span>
+                        <div class="col-md-9">
+                            <input type="text" id='txt_personID' class="form-control">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <span class="col-md-3">Họ tên</span>
+                        <div class="col-md-9">
+                            <input type="text" id='txt_fullName' class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="row form-group">
+                        <span class="col-md-3">Ngày sinh</span>
+                        <div class="col-md-9">
+                            <input type="text" id='txt_birthday' class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="row form-group">
+                        <span class="col-md-3">Giới tính</span>
+                        <div class="col-md-9">
+                            <input type="text" id='txt_gender' class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="row form-group">
+                        <span class="col-md-3">Quốc tịch</span>
+                        <div class="col-md-9">
+                            <input type="text" id='txt_nation' class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="row form-group">
+                        <span class="col-md-3">Quê quán</span>
+                        <div class="col-md-9">
+                            <input type="text" id='txt_origin' class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="row form-group">
+                        <span class="col-md-3">Nơi thường trú</span>
+                        <div class="col-md-9">
+                            <input type="text" id='txt_residence' class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="row form-group">
+                        <span class="col-md-3">Ngày hết hạn</span>
+                        <div class="col-md-9">
+                            <input type="text" id='txt_expiry' class="form-control">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>   
+    
+    <div id="loadingOverlay">
+        <i class="fa-duotone fa-solid fa-spinner fa-spin-pulse loading-icon"></i>
+        <p>Đang xử lý, vui lòng chờ...</p>
+    </div>
+    
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    
+</body>
+</html>
