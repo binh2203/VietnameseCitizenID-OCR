@@ -28,12 +28,13 @@ Dự án sử dụng YOLOv10 để trích xuất thông tin từ căn cước c�
     pip install -r requirements.txt
 3. **Tải mô hình VietOCR**
 
-   Tải mô hình từ link sau: vgg_transformer.pth.
-   Đưa file tải về vào thư mục:
-   models/vietocr/
+   Tải mô hình từ link sau:
+   ```bash
+   https://vocr.vn/data/vietocr/vgg_transformer.pth
+Đưa file tải về vào thư mục: models/vietocr/
 
 
 ## 3. Hướng dẫn sử dụng
    Sau khi hoàn tất cài đặt, chạy chương trình bằng lệnh:
    ```bash
-   python main.py
+    python main.py
