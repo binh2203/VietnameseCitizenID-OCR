@@ -23,11 +23,17 @@ def handle_id(result, ocr_data):
 def handle_hometown(result, ocr_data):
     # Thêm hometown vào dữ liệu, giới hạn ở 2 lần xuất hiện
     if ocr_data["home_town_count"] < 2:
+        # Kiểm tra nếu ocr_data["home_town"] đã có giá trị
         if ocr_data["home_town"]:
-            ocr_data["home_town"] = f"{ocr_data['home_town']}, {result}"
+            # Chỉ thêm nếu độ dài không bằng nhau
+            if len(ocr_data["home_town"]) != len(result):
+                ocr_data["home_town"] = f"{ocr_data['home_town']}, {result}"
+                ocr_data["home_town_count"] += 1
         else:
+            # Nếu ocr_data["home_town"] chưa có giá trị thì gán trực tiếp
             ocr_data["home_town"] = result
-        ocr_data["home_town_count"] += 1
+            ocr_data["home_town_count"] += 1
+
 
 def process_image(image_name, db_path):
     # Kiểm tra tệp tồn tại
@@ -37,9 +43,13 @@ def process_image(image_name, db_path):
         return
 
     # Khởi tạo model YOLO và VietOCR
-    model = YOLO("models/yolo/yolov10b.pt")
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    yolo_path = os.path.join(base_dir, "models", "yolo","yolov10b.pt")
+    vietocr_path = os.path.join(base_dir, "models", "vietocr","vgg_transformer.pth")
+
+    model = YOLO(yolo_path)
     config = Cfg.load_config_from_name('vgg_transformer')
-    config['weights'] = 'models/vietocr/vgg_transformer.pth'
+    config['weights'] = vietocr_path
     config['device'] = 'cpu'
     detector = Predictor(config)
 

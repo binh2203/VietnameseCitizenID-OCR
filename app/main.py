@@ -5,7 +5,8 @@ import yolo_vietocr
 import create_database
 
 # Cấu hình đường dẫn cơ sở dữ liệu
-db_path = "database/OCR.db"
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+db_path = os.path.join(base_dir, "database", "OCR.db")
 create_database.initialize_database(db_path)
 
 # Tạo thư mục lưu tạm nếu chưa tồn tại
