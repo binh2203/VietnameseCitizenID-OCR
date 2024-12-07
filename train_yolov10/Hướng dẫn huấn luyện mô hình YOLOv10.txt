@@ -1,0 +1,7 @@
+Lưu ý: Trong phần này thư mục "CCCD_Detection" là tập dữ liệu ảnh căn cước công dân "các bạn có thể tìm trên Roboflow"
+
+B1: Tải thư mục "CCCD_Detection" và file "Train_YOLOv10.ipynb"  vào phần "MyDrive" trên GoogleDrive. 
+B2: Mở file "Train_YOLOv10.ipynb" bằng Google Colab. 
+B3: Chạy lần lượt từng dòng lệnh để kết nối Google Drive của bạn, và sau đó là training YOLOv10.
+
+===> kết quả lưu ở thư mục yolov10/runs 
